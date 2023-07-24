@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function httpGet(theUrl){
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", theUrl, false); // false for synchronous request
+      xmlHttp.send( null );
+      return xmlHttp.responseText;
+    }
+
+    window.onload = function(){
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
+        get = eval(httpGet("https://geo.api.gouv.fr/communes?lat="+lat+"&lon="+long+"&fields=nom,code&format=json&geometry=centre"))
+        document.getElementsByTagName("p")[0].innerHTML = get
+        departement = get[0]["code"].slice(0,2)
+        if(departement == "97"){departement = get[0]["code"].slice(0,3)}
+
+        window.location.replace("départements_communes/"+departement+"_communes.html")
+      });
+    }
+  </script>
+</head>
+<body>
+  <p>Get position departement</p>
+
+</body>
+</html>
