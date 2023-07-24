@@ -10,6 +10,7 @@ function httpGet(theUrl){
   return xmlHttp.responseText;
 }
 
+window.onload = function(){
 navigator.geolocation.getCurrentPosition((position) => {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
@@ -39,3 +40,4 @@ navigator.geolocation.getCurrentPosition((position) => {
   document.getElementsByTagName("svg")[0].appendChild(circle)
   
 }});
+}
