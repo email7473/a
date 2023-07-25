@@ -18,7 +18,7 @@ navigator.geolocation.getCurrentPosition((position) => {
   get = eval(httpGet("https://geo.api.gouv.fr/communes?lat="+lat+"&lon="+long+"&fields=nom,code&format=json&geometry=centre"))
   departement = get[0]["code"].slice(0,2)
   if(departement == "97"){departement = get[0]["code"].slice(0,3)}
-  if(departement != DepartementCode){window.location.replace("départements_communes/"+departement+"_communes.html")}else{
+  if(departement != DepartementCode){window.location.replace("https://email7473.github.io/départements_communes/"+departement+"_communes.html")}else{
   
   p = document.createElement("p")
   p.innerHTML = get[0]["nom"]
